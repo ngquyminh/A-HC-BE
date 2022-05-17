@@ -4,6 +4,12 @@ const { createDecipheriv, createCipheriv, randomBytes } = require("crypto");
 const isEmail = require("validator/lib/isEmail");
 
 const userSchema = new mongoose.Schema({
+  firstName:{
+    type: String,
+  },
+  lastName:{
+    type: String,
+  },
   username: {
     type: String,
   },
@@ -17,6 +23,9 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
+  },
+  activeRate: {
+    type: Number,
   },
 
   // NEW
@@ -55,10 +64,8 @@ const userSchema = new mongoose.Schema({
   resetPasswordExpires: {
     Date,
   },
-  foodOrder: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "FoodOrder",
-  },
+  bmiRate: { type: mongoose.Schema.Types.ObjectId, ref: "BMIRate" },
+  activity: { type: mongoose.Schema.Types.ObjectId, ref: "Activity" },
 });
 
 userSchema.statics.findByLogin = async function (username) {
