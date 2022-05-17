@@ -4,6 +4,8 @@ const resolvers = require("../resolvers");
 const { formatError, context } = require("./auth");
 
 const PORT = process.env.PORT;
+const APOLLO_KEY = process.env.APOLLO_KEY;
+const APOLLO_GRAPH_REF = process.env.APOLLO_GRAPH_REF;
 
 const server = new ApolloServer({
   typeDefs,
@@ -12,6 +14,10 @@ const server = new ApolloServer({
   introspection: true,
   formatError,
   context,
+  apollo:{
+    key: APOLLO_KEY,
+    graphRef: APOLLO_GRAPH_REF
+  }
 });
 
 const startServer = async () => {
