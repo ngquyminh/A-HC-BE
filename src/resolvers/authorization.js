@@ -11,17 +11,7 @@ const isAdmin = combineResolvers(
     role === "ADMIN" ? skip : new ForbiddenError("Not authorized as admin.")
 );
 
-// async function isMessageOwner(parent, { id }, { models, me }) {
-//   const message = await models.Message.findById(id);
-
-//   if (message.userId != me.id) {
-//     throw new ForbiddenError('Not authenticated as owner.');
-//   }
-
-//   return skip;
-// }
-
 module.exports = {
   isAuthenticated,
-  isAdmin, // isMessageOwner
+  isAdmin,
 };
